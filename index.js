@@ -7,7 +7,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'config')));
-const allowedOrigin = ['http://localhost:3000','https://siil777.github.io'];
+const allowedOrigin = ['http://localhost:3000','https://siil777.github.io/'];
 
 app.use((req, res, next) => {
     const origin = req.headers.origin;
@@ -57,10 +57,8 @@ app.get('/get/task', async (req, res) => {
 });
 app.delete('/delete/task/:taskId', async (req, res) => {
     const { taskId } = req.params; 
-     // Ensure you are extracting from req.params, not req.body
-    console.log("Received taskId:", taskId);  // Log taskId to debug
+    console.log("Received taskId:", taskId); 
 
-    // Continue with deletion logic
     try {
         const message = await deleteTask(taskId);
         if (message) {
